@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roast Master - Ultimate Telugu Roast Generator 🔥</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #1a1a1a);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .fire-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .fire-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 10s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ffd60a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            color: #ffd60a;
+            transition: all 0.3s ease;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: rgba(40, 40, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            border: 2px solid #ff6b6b;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .upload-area {
+            border: 3px dashed #ff6b6b;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: rgba(20, 20, 20, 0.5);
+        }
+
+        .upload-area:hover {
+            border-color: #ffd60a;
+            background: rgba(255, 107, 107, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .name-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            text-align: center;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .name-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .name-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(255, 217, 10, 0.5);
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .lang-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid #ffd60a;
+            background: transparent;
+            color: #ffd60a;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #ffd60a;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 217, 10, 0.3);
+        }
+
+        /* Roast Button */
+        .roast-btn {
+            background: linear-gradient(45deg, #ff006e, #ffaa00);
+            color: #fff;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roast-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .roast-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .roast-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 0, 110, 0.4);
+        }
+
+        /* Roast Display */
+        .roast-display {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            margin-top: 2rem;
+            display: none;
+            animation: roastAppear 0.5s ease;
+            border: 2px solid #ff6b6b;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.2);
+        }
+
+        @keyframes roastAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotate(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .roast-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            text-align: center;
+            color: #ffd60a;
+            margin: 1rem 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .roast-emoji {
+            font-size: 3rem;
+            text-align: center;
+            margin: 1rem 0;
+            animation: shake 0.5s ease infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Share Buttons */
+        .share-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .share-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-whatsapp {
+            background: #25d366;
+            color: white;
+        }
+
+        .share-twitter {
+            background: #1da1f2;
+            color: white;
+        }
+
+        .share-copy {
+            background: #6c757d;
+            color: white;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Preview Image */
+        .preview-container {
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .preview-img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ffd60a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .loading-spinner {
+            font-size: 3rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .upload-section {
+                padding: 2rem 1rem;
+            }
+            
+            .roast-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Comic Speech Bubble */
+        .speech-bubble {
+            position: relative;
+            background: linear-gradient(135deg, #ffd60a, #ffaa00);
+            color: #000;
+            padding: 1.5rem;
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.3);
+            border: 3px solid #ff6b6b;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 20px 20px 0 0;
+            border-color: #ff6b6b transparent transparent transparent;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="fire-bg" id="fireBg"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <h1 class="logo">🔥 ROAST MASTER 🔥</h1>
+        <p class="tagline" id="tagline">Era Thambi, Roast avadaniki ready ah? 😂</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="upload-section">
+            <h2>Ready to Get Roasted? 🌶️</h2>
+            
+            <!-- Upload Area -->
+            <div class="upload-area" onclick="document.getElementById('photoInput').click()">
+                <div class="upload-icon">📸</div>
+                <p>Click to Upload Photo</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.8;">or drag and drop</p>
+            </div>
+            <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect(event)">
+            
+            <p style="margin: 1rem 0;">OR</p>
+            
+            <!-- Name Input -->
+            <input type="text" class="name-input" id="nameInput" placeholder="Enter a name to roast... 🎯">
+            
+            <!-- Preview -->
+            <div class="preview-container" id="previewContainer">
+                <img class="preview-img" id="previewImg" src="" alt="Preview">
+            </div>
+            
+            <!-- Language Toggle -->
+            <div class="language-toggle">
+                <button class="lang-btn active" onclick="setLanguage('telugu')">Telugu 🌶️</button>
+                <button class="lang-btn" onclick="setLanguage('english')">English 🔥</button>
+                <button class="lang-btn" onclick="setLanguage('hinglish')">Hinglish 😈</button>
+            </div>
+            
+            <!-- Roast Button -->
+            <button class="roast-btn" onclick="generateRoast()">
+                ROAST ME! 🔥
+            </button>
+            
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="loading-spinner">🔥</div>
+                <p>Cooking your roast...</p>
+            </div>
+        </div>
+        
+        <!-- Roast Display -->
+        <div class="roast-display" id="roastDisplay">
+            <div class="roast-emoji" id="roastEmoji">🔥😂🔥</div>
+            <div class="speech-bubble">
+                <div class="roast-text" id="roastText"></div>
+            </div>
+            
+            <!-- Share Section -->
+            <div class="share-section">
+                <button class="share-btn share-whatsapp" onclick="shareWhatsApp()">
+                    📱 WhatsApp
+                </button>
+                <button class="share-btn share-twitter" onclick="shareTwitter()">
+                    🐦 Twitter
+                </button>
+                <button class="share-btn share-copy" onclick="copyRoast()">
+                    📋 Copy
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Roast Collections
+        const roasts = {
+            telugu: {
+                generic: [
+                    "Ayyo! Nee face chusthe mirror kuda break aipothundi ra! 😂 Glass insurance teeskondi first!",
+                    "Rey! Nuvvu born ayyappudu doctor 'Sorry' annadu ani ippudu ardam aithundi! 🤣",
+                    "Nee photo chusthe Snapchat filters kuda give up chesi pothunnai! Beauty mode ki kuda limit untadi kada! 💀",
+                    "Enti bro, face app lo 'before' photo upload chesava? 'After' kuda ide ante devudini nammu! 🙏",
+                    "Nuvvu smile chesthe current pothundi anna... horror movie effect tho! 👻",
+                    "Nee selfie game antha strong, phone kuda suicide chesukuntundi! 📱💔",
+                    "God ki time ledu ani prove chesav nuvvu... rushed work ila untadi! 🏃‍♂️",
+                    "Nee face reveal chesthe YouTube lo dislike button vापस వస్తుంది! 👎",
+                    "Passport photo lo kuda filter vadatava nuvvu? Natural ga ila unte ela? 🤔",
+                    "Breaking News: Nee photo chusi aliens Earth invasion cancel chesaru! 👽❌"
+                ],
+                names: {
+                    default: [
+                        "{name} garu, mee peru vinagane mosquitoes kuda blood donation istunnai! 🦟💉",
+                        "Ey {name}! Nee peru certificate lo spelling mistake emo check chesko! 😏",
+                        "{name} ante telugu lo 'experiment gone wrong' ani meaning ochindi dictionary lo! 📚",
+                        "Parents ni adugu {name}, nee peru pettetappudu high lo unnara ani! 🍺",
+                        "{name}! Nee birth certificate apology letter la undi chudu! 📜"
+                    ]
+                }
+            },
+            english: {
+                generic: [
+                    "You're proof that God has a sense of humor! 😂",
+                    "I'd roast you, but my mom said I shouldn't burn trash! 🗑️🔥",
+                    "Your face could make onions cry! 😭",
+                    "Scientists use your photo to prove that evolution can go backwards! 🐒",
+                    "You're the reason shampoo has instructions! 🧴",
+                    "If laughter is the best medicine, your face must be curing the world! 💊",
+                    "You bring everyone so much joy... when you leave the room! 🚪",
+                    "I'd agree with you but then we'd both be wrong! 🤝",
+                    "Your birth certificate is an apology letter from the hospital! 🏥",
+                    "You're like a cloud. When you disappear, it's a beautiful day! ☁️☀️"
+                ],
+                names: {
+                    default: [
+                        "{name}, even your imaginary friends have standards! 👻",
+                        "Hey {name}, autocorrect was trying to save us from your name! 📱",
+                        "{name}? More like {lame}! Even my grandma's got better jokes! 👵",
+                        "Breaking: {name} spotted! Hide your good vibes! 🚨",
+                        "{name}, you're the human equivalent of a participation trophy! 🏆"
+                    ]
+                }
+            },
+            hinglish: {
+                generic: [
+                    "Bhai, tera chehra dekh ke face unlock bhi hang ho jata hai! 📱💀",
+                    "Tu proof hai ki Ctrl+Z real life mein kaam nahi karta! ⌨️",
+                    "Tere photos dekh ke Instagram ne report button introduce kiya tha! 📸",
+                    "Bro, tu paida hua tha ya WiFi slow tha download karte waqt? 📶",
+                    "Tera face reveal karke internet ka bandwidth waste mat kar! 💾",
+                    "Mirror mirror on the wall, tumne isko dekha toh crack kyun aa gaya? 🪞",
+                    "Bhagwan ne tujhe banate time 'Save as Draft' kar dena chahiye tha! 📝",
+                    "Tu wo example hai jab God Monday morning ko kaam karta hai! 😴",
+                    "Tere jaisa dost ho toh dushman ki kya zarurat! 🤷‍♂️",
+                    "Beta, quality control miss kar gaye the jab tu production line pe tha! 🏭"
+                ],
+                names: {
+                    default: [
+                        "{name}, naam sunte hi auto-correct bhi confuse ho jata hai! 🤔",
+                        "Arre {name}, tere parents ne random password generator use kiya tha kya? 🔐",
+                        "{name} ka matlab hindi mein 'galti se mistake ho gaya' hai! 📖",
+                        "Sun {name}, tera birth certificate refund policy ke saath aata hai! 💸",
+                        "{name}? Ye naam hai ya wifi password? 📡"
+                    ]
+                }
+            }
+        };
+
+        let currentLanguage = 'telugu';
+        let uploadedImage = null;
+        let currentRoast = '';
+
+        // Initialize floating emojis
+        function createFloatingEmojis() {
+            const bg = document.getElementById('fireBg');
+            const emojis = ['🔥', '😂', '💀', '🌶️', '😈', '🤣'];
+            
+            for (let i = 0; i < 15; i++) {
+                const emoji = document.createElement('div');
+                emoji.className = 'fire-emoji';
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.left = Math.random() * 100 + '%';
+                emoji.style.animationDelay = Math.random() * 10 + 's';
+                emoji.style.animationDuration = (10 + Math.random() * 10) + 's';
+                bg.appendChild(emoji);
+            }
+        }
+
+        // Set language
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update tagline based on language
+            const tagline = document.getElementById('tagline');
+            switch(lang) {
+                case 'telugu':
+                    tagline.textContent = 'Era Thambi, Roast avadaniki ready ah? 😂';
+                    break;
+                case 'english':
+                    tagline.textContent = 'Era neeku English ochha? 🤔';
+                    break;
+                case 'hinglish':
+                    tagline.textContent = 'First English nerchukora! 😏';
+                    break;
+            }
+            
+            // Add animation effect
+            tagline.style.animation = 'none';
+            setTimeout(() => {
+                tagline.style.animation = 'slideIn 0.5s ease';
+            }, 10);
+        }
+
+        // Handle file selection
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    document.getElementById('previewImg').src = uploadedImage;
+                    document.getElementById('previewContainer').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Generate roast
+        function generateRoast() {
+            const name = document.getElementById('nameInput').value.trim();
+            
+            if (!uploadedImage && !name) {
+                alert('Upload a photo or enter a name first! 📸');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('roastDisplay').style.display = 'none';
+
+            // Simulate API call delay
+            setTimeout(() => {
+                let roast = '';
+                const roastSet = roasts[currentLanguage];
+                
+                if (name) {
+                    // Use name-based roasts
+                    const nameRoasts = roastSet.names.default;
+                    roast = nameRoasts[Math.floor(Math.random() * nameRoasts.length)];
+                    roast = roast.replace(/{name}/g, name);
+                    roast = roast.replace(/{lame}/g, name.split('').reverse().join('')); // Simple wordplay
+                } else {
+                    // Use generic roasts
+                    roast = roastSet.generic[Math.floor(Math.random() * roastSet.generic.length)];
+                }
+
+                currentRoast = roast;
+                
+                // Hide loading, show roast
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('roastText').textContent = roast;
+                document.getElementById('roastDisplay').style.display = 'block';
+                
+                // Random emoji set
+                const emojiSets = ['🔥😂🔥', '💀🤣💀', '🌶️😈🌶️', '😭🔥😭'];
+                document.getElementById('roastEmoji').textContent = emojiSets[Math.floor(Math.random() * emojiSets.length)];
+            }, 1500);
+        }
+
+        // Share functions
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`I got roasted! 🔥\n\n${currentRoast}\n\nGet your roast at RoastMaster!`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        }
+
+        function shareTwitter() {
+            const text = encodeURIComponent(`Just got roasted! 🔥\n\n${currentRoast}\n\n#RoastMaster #Roasted`);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        }
+
+        function copyRoast() {
+            navigator.clipboard.writeText(currentRoast).then(() => {
+                alert('Roast copied! Now share the burn! 🔥');
+            });
+        }
+
+        // Drag and drop
+        const uploadArea = document.querySelector('.upload-area');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ff006e';
+            uploadArea.style.background = 'rgba(255, 255, 255, 0.1)';
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ffd60a';
+            uploadArea.style.background = 'transparent';
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ffd60a';
+            uploadArea.style.background = 'transparent';
+            
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const input = document.getElementById('photoInput');
+                input.files = e.dataTransfer.files;
+                handleFileSelect({ target: input });
+            }
+        });
+
+        // Initialize
+        createFloatingEmojis();
+    </script>
+</body>
+</html>
